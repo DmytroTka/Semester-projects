@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/project_information_styles.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="project_information_div">
+        <h2>{{ choosed_project.name }}</h2>
+        <span>{{ choosed_project.short_description }}</span>
+        <p>Учасники проекту: {% if choosed_project.users!=None %}{{ choosed_project.users }}{% else %}немає учасників{% endif %}</p>
+        {% with messages = get_flashed_messages() %}
+           {% if messages %}
+              {% for message in messages %}
+                <p style="display: block; margin-bottom: 1em; color: red;">{{ message }}</p>
+              {% endfor %}
+           {% endif %}
+        {% endwith %}
+
+        {% if choosed_project.name!=user_project or choosed_project == None %}
+        <form method="post">
+            <button class="choose_button">Обрати проект</button>
+        </form>
+        {% else %}
+        <form method="post" action="/project_information/{{ choosed_project.id }}/leave">
+            <button class="choose_button" >Покинути проект</button>
+        </form>
+        {% endif %}
+
+        <a class="main_page_link" href="/">Головна сторінка</a>
+    </div>
+{% endblock %}

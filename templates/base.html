@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Семестрові проекти</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base_styles.css')}}">
+    {% block styles %}
+
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <div class="header_content">
+            <a href="/"><h1>Семестрові проекти</h1></a>
+            <div class="menu">
+                <a href="/registration"><button class="menu_button">Зареєструватись</button></a>
+                <a href="/login"><button class="menu_button">Увійти</button></a>
+                <p>Аккаунт: {{ username }}<!--user1--></p>
+            </div>
+        </div>
+
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+</body>
+</html>

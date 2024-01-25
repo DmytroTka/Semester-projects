@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index_styles.css')}}">
+{% endblock %}
+{% block content %}
+
+    <div class="index_content">
+        {% for project in projects %}
+        <div class="project_block">
+            <h2>{{ project.name }}</h2>
+            <p>{{ project.short_description }}</p>
+            <p>Учасники проекту: {% if project.users!=None %}{{ project.users }}{% else %}немає учасників{% endif %}</p>
+            <a href="/project_information/{{ project.id }}"><button class="project_link">Деталі проекту</button></a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
